@@ -1,0 +1,39 @@
+easy_admin:
+  site_name: Catalogue produit
+
+  design:
+    menu:
+      - { route: "homepage", label: "Back to the website", icon: "home" }
+      - { entity: "Produit", label: "Produits", icon: "map-marker" }
+  entities:
+      class: App\Entity\Poduit
+      form:
+          fields:
+          - nom
+          - description
+          - quantite
+          - prix
+          - { property: "disponibilite", type: "boolean" }
+      new:
+          fields:
+          - nom
+          - description
+          - quantite
+          - prix
+          - { property: "disponibilite", type: "boolean" }
+      edit:
+          fields:
+          - nom
+          - description
+          - quantite
+          - prix
+          - { property: "disponibilite", type: "boolean" }
+    # Produit:
+    #   class: App\Entity\Produit
+    #   list:
+        # fields:
+        #   - nom
+        #   - description
+        #   - quantite
+        #   - prix
+        #   - { property: "disponibilite", type: "boolean" }
