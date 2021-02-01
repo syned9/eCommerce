@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Produit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -18,6 +19,19 @@ class ProduitRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Produit::class);
     }
+    public const PAGINATOR_PER_PAGE = 1;
+    public function getProduitPaginator(Produit $produit,int $offset): Paginator
+    {
+        $query = $this->createQueryBuilder('c')
+        ->andWhere('c.produit = :produit')
+        ->setParameter('produit', $produit)
+        ->orderBy('c.nom', 'DESC')
+        ->setMaxResults(self::PAGINATOR_PER_PAGE)
+        ->setFirstResult($offset)
+        ->getQuery()
+        ;
+        return new Paginator($query);
+     }
 
     // /**
     //  * @return Produit[] Returns an array of Produit objects

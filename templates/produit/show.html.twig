@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}produit!{% endblock %}
+
+{% block body %}
+
+<div >
+    <h1>{{ produit }}</h1>
+
+<br><br>
+ <a href="{{ path('produit', { id: produit.id }) }}" class="btn btn-sm btn-secondary">produit</a>
+
+<br><br>
+
+   <div class="d-inline p-2 bg-primary text-white"> Nom : {{ produit.nom }}</div><br><br>
+   <div class="d-inline p-2 bg-primary text-white"> prix : {{ produit.prix }}</div><br><br>
+   
+
+{% endblock %}
