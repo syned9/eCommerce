@@ -11,15 +11,40 @@ easy_admin:
       list:
         fields:
           - nom
-          - { property: "description", type: "textarea" }
+          - { property: "description", type: "text" }
           - { property: "quantite", type: "integer" }
           - { property: "prix", type: "float" }
           - { property: "disponibilite", type: "boolean" }
+          - { property: "categorie" }
+          
+      edit:
+        fields:
+          - nom
+          - { property: "description", type: "textarea" }
+          - { property: "quantite", type: "integer" }
+          - { property: "prix", type: "money" }
+          - { property: "disponibilite", type: "checkbox" }
+          - { property: "categorie" }
+
+      new:
+        fields:
+          - nom
+          - { property: "description", type: "textarea" }
+          - { property: "quantite", type: "integer" }
+          - { property: "prix", type: "money" }
+          - { property: "disponibilite", type: "checkbox" }
           - { property: "categorie" }
 
     Categories:
       class: App\Entity\Categories
       list:
         fields:
+          - id
           - nom
+      edit:
+        fields:
+          - nom    
+      new:
+        fields:
+          - nom    
           
