@@ -42,6 +42,14 @@ class Produit
      */
     private $disponibilite;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $categorie;
+
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +111,24 @@ class Produit
     public function setDisponibilite(?bool $disponibilite): self
     {
         $this->disponibilite = $disponibilite;
+
+        return $this;
+    }
+
+    
+    public function __toString() :string
+    {
+        return $this->nom;
+    }
+
+    public function getCategorie(): ?Categories
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categories $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

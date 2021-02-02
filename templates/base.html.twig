@@ -16,13 +16,87 @@
                 padding: 3rem 1.5rem;
                 text-align: center;
             }
+            header {
+                background-color: rgba(255,255,255,0.9);
+                position: -webkit-sticky;
+                position: sticky;
+                top: 1px;
+                z-index: 4;
+            }
+
+            .navBar{
+                height: 150px;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .logo img{
+                height: 100px;
+                width: 100px;
+
+            }
+
+            .menuNavigation{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+            }
+
+            .menuNavigation button{
+                margin: 0em 3em;
+                border-radius: 2em;
+                background-color: #1fe0;
+                border-color: #1fe0;
+                color: #271c1380;
+                font-weight: bold;
+                display: inline-block;
+            }
+
+            .menuNavigation button:hover{
+                background-color: whitesmoke;
+            }
+
+            .loisirRolling {
+                display: flex;
+                align-self: center;
+                flex-direction: column;
+                max-height: 1.5em;
+                overflow: hidden;
+            }
+
+            .loisirRolling:hover {
+                max-height: 5em;
+                margin-top: 3em;
+            }
+
+            .compteRolling {
+                display: flex;
+                align-self: center;
+                flex-direction: column;
+                max-height: 3em;
+                overflow: hidden;
+            }
+
+            .compteRolling:hover {
+                max-height: 6.5em;
+                margin-top: 3em;
+            }
+
+            .menuNavigation hr {
+                border:         none;
+                border-left:    1px solid hsla(200, 10%, 50%,100);
+                height:         30px;
+                width:          1px;
+                
+            }
         </style>
     {% endblock %}
 
     <title>{% block title %}Hello, world!{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    {# <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -35,7 +109,51 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> #}
+
+    <header>
+        <div class="row navBar">
+            <div class="logo">
+                {# <img src="../img/Logo-gite.png"> #}
+            </div>
+            <div class="menuNavigation">
+                <button onclick="window.location.href = '{{ path('home') }}'';" type="button">HOME</button>
+                <hr>
+                {# <button onclick="window.location.href = '{{ path('produit') }}';" type="button">Produit</button>
+                <hr> #}
+                <div class="loisirRolling">
+                    <button type="button">Produits</button>
+                    <button onclick="window.location.href = '{{ path('produit') }}';" type="button">Produits</button>
+                    {# <button onclick="window.location.href = 'http://localhost/chambres_dhotes/vue/activites.php';" type="button">Activites</button> #}
+                </div>
+                <hr>
+                <button onclick="window.location.href = 'http://localhost/chambres_dhotes/vue/contact.php';" type="button">Contact</button>
+                <hr>
+                
+                <div class="compteRolling">
+                    <button onclick="window.location.href = '{{ path('compte') }}';" type="button">
+                        <?xml version="1.0" encoding="UTF-8"?>
+                        <svg width="30pt" height="30pt" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg">
+                        <path d="m240 0c-132.55 0-240 107.45-240 240s107.45 240 240 240c7.2305 0 14.434-0.32422 21.602-0.96875 6.6641-0.59766 13.27-1.5117 19.824-2.6562l2.5195-0.44531c121.86-22.742 206.36-134.55 194.96-258-11.398-123.45-114.94-217.89-238.91-217.93zm-19.281 463.15h-0.56641c-6.2227-0.55078-12.398-1.3828-18.52-2.4492-0.35156-0.0625-0.70312-0.10156-1.0469-0.16797-5.9844-1.0703-11.906-2.3984-17.77-3.9492l-1.418-0.36328c-5.7188-1.5508-11.375-3.3516-16.949-5.3516-0.57812-0.20703-1.1602-0.39062-1.7383-0.60547-5.4648-2.0078-10.832-4.2578-16.117-6.6914-0.65625-0.29297-1.3125-0.57422-1.9688-0.88672-5.1836-2.3984-10.266-5.1016-15.25-7.9453-0.70312-0.39844-1.4141-0.79688-2.1172-1.1914-4.9062-2.8633-9.6992-5.9336-14.402-9.1758-0.71094-0.49609-1.4297-0.97656-2.1367-1.4727-4.6211-3.2773-9.125-6.7578-13.512-10.398l-1.207-1.0547v-67.449c0.058594-48.578 39.422-87.941 88-88h112c48.578 0.058594 87.941 39.422 88 88v67.457l-1.0625 0.88672c-4.4727 3.7344-9.0625 7.2656-13.777 10.602-0.625 0.4375-1.2578 0.85547-1.8789 1.2852-4.7578 3.3047-9.6328 6.4141-14.625 9.3359-0.625 0.36328-1.2656 0.70703-1.8867 1.0664-5.0586 2.8789-10.203 5.5977-15.449 8.0469-0.60156 0.28125-1.207 0.54297-1.8164 0.80078-5.3281 2.457-10.742 4.7188-16.246 6.7422-0.54687 0.20312-1.0977 0.37891-1.6016 0.57031-5.6016 2.0078-11.281 3.8242-17.031 5.3828l-1.3789 0.34375c-5.8711 1.5508-11.797 2.8867-17.789 3.9609-0.34375 0.0625-0.6875 0.10547-1.0312 0.16016-6.1289 1.0703-12.312 1.9023-18.539 2.457h-0.56641c-6.3984 0.55078-12.801 0.84766-19.281 0.84766-6.4805 0-12.934-0.24219-19.32-0.79297zm179.28-66.527v-52.625c-0.066406-57.41-46.59-103.93-104-104h-112c-57.41 0.066406-103.93 46.59-104 104v52.617c-86.164-87.941-85.203-228.94 2.1484-315.7 87.352-86.758 228.35-86.758 315.7 0 87.352 86.762 88.312 227.76 2.1484 315.7z"/>
+                        <path d="m240 64c-44.184 0-80 35.816-80 80s35.816 80 80 80 80-35.816 80-80c-0.046875-44.164-35.836-79.953-80-80zm0 144c-35.348 0-64-28.652-64-64s28.652-64 64-64 64 28.652 64 64c-0.039062 35.328-28.672 63.961-64 64z"/>
+                        </svg>
+                    </button>
+                    {% if "!empty($_COOKIE['connexionETAT']) && $_COOKIE['connexionETAT'] == 'connect'" %}
+                        <button onclick="window.location.href = '{{ path('app_logout') }}';" type="button">Deconnexion</button>
+                    {% else %}
+                        <button onclick="window.location.href = '{{ path('login') }}';" type="button">Connexion</button>
+                        <button onclick="window.location.href = '{{ path('login') }}';" type="button">Inscription</button>
+                    {% endif %}
+                    {# <?php if(!empty($_COOKIE['connexionETAT']) && $_COOKIE['connexionETAT'] == 'connect') { ?>
+                        <button onclick="window.location.href = 'http://localhost/chambres_dhotes/function/deconnexion.php';" type="button">Deconnexion</button>
+                    <?php } else { ?>
+                        <button onclick="window.location.href = 'http://localhost/chambres_dhotes/vue/connexion.php';" type="button">Connexion</button>
+                        <button onclick="window.location.href = 'http://localhost/chambres_dhotes/vue/connexion.php';" type="button">Inscription</button>
+                    <?php } ?> #}
+                </div>                    
+            </div>
+        </div>
+    </header>
 
     <main role="main" class="container">
         <div class="div-container">

@@ -1,39 +1,25 @@
 easy_admin:
-  site_name: Catalogue produit
+  site_name: eCommerce
 
   design:
     menu:
-      - { route: "homepage", label: "Back to the website", icon: "home" }
-      - { entity: "Produit", label: "Produits", icon: "map-marker" }
+      - { entity: "Produit", label: "Produits", icon: "field-list" }
+      - { entity: "Categories", label: "Categories", icon: "field-list" }
   entities:
-      class: App\Entity\Poduit
-      form:
-          fields:
+    Produit:
+      class: App\Entity\Produit
+      list:
+        fields:
           - nom
-          - description
-          - quantite
-          - prix
+          - { property: "description", type: "textarea" }
+          - { property: "quantite", type: "integer" }
+          - { property: "prix", type: "float" }
           - { property: "disponibilite", type: "boolean" }
-      new:
-          fields:
+          - { property: "categorie" }
+
+    Categories:
+      class: App\Entity\Categories
+      list:
+        fields:
           - nom
-          - description
-          - quantite
-          - prix
-          - { property: "disponibilite", type: "boolean" }
-      edit:
-          fields:
-          - nom
-          - description
-          - quantite
-          - prix
-          - { property: "disponibilite", type: "boolean" }
-    # Produit:
-    #   class: App\Entity\Produit
-    #   list:
-        # fields:
-        #   - nom
-        #   - description
-        #   - quantite
-        #   - prix
-        #   - { property: "disponibilite", type: "boolean" }
+          
