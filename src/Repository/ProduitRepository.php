@@ -19,12 +19,21 @@ class ProduitRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Produit::class);
     }
-    public const PAGINATOR_PER_PAGE = 1;
-    public function getProduitPaginator(Produit $produit,int $offset): Paginator
+    public const PAGINATOR_PER_PAGE =3;
+    public function getProduitPaginator(int $offset, string $nom = '', string $prix =''): Paginator
     {
-        $query = $this->createQueryBuilder('c')
-        ->andWhere('c.produit = :produit')
-        ->setParameter('produit', $produit)
+        $queryBuilder = $this->createQueryBuilder('c');
+        if ($nom) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('c.nom = :nom')
+                ->setParameter('nom', $nom);
+        }
+        if ($prix) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('c.prix = :prix')
+                ->setParameter('prix', $prix);
+        }
+        $query = $queryBuilder
         ->orderBy('c.nom', 'DESC')
         ->setMaxResults(self::PAGINATOR_PER_PAGE)
         ->setFirstResult($offset)
@@ -32,6 +41,32 @@ class ProduitRepository extends ServiceEntityRepository
         ;
         return new Paginator($query);
      }
+     public function getListNom()
+    {
+        $noms = [];
+        foreach ($this->createQueryBuilder('c')
+        ->select('c.nom')
+        ->distinct(true)
+        ->orderBy('c.nom', 'ASC')
+        ->getQuery()
+        ->getResult() as $cols) {
+            $noms[] = $cols['nom'];
+        }
+        return $noms;
+    }
+    public function getListPrix()
+    {
+        $prixs = [];
+        foreach ($this->createQueryBuilder('c')
+        ->select('c.prix')
+        ->distinct(true)
+        ->orderBy('c.prix', 'ASC')
+        ->getQuery()
+        ->getResult() as $cols) {
+            $prixs[] = $cols['prix'];
+        }
+        return $prixs;
+    }
 
     // /**
     //  * @return Produit[] Returns an array of Produit objects

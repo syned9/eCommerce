@@ -1,19 +1,42 @@
+
 {% extends 'base.html.twig' %}
 
-{% block title %}produit!{% endblock %}
 
 {% block body %}
+             
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="card text-left my-2">
+                        <div class="card-header">
+                            <span class="font-weight-bold">{{ produit.nom }} </span>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-truncate">Prix : {{ produit.prix }} euro</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-truncate">Description : {{ produit.description }}</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-truncate">Quantité : {{ produit.quantite }} </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-truncate">Disponible : {% if produit.disponibilite %}
+                                                                               le produit est disponible
+                                                                                {% else %}
+                                                                                le produit n'est plus disponible
+                                                                                {% endif %}</p>
+                        </div>
+                        <div class="card-footer">
+                            <a href="{{ path('modif', {id: produit.id}) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ path('delete', {id: produit.id}) }}" class="btn btn-warning">Suprimer</a>
 
-<div >
-    <h1>{{ produit }}</h1>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
 
-<br><br>
- <a href="{{ path('produit', { id: produit.id }) }}" class="btn btn-sm btn-secondary">produit</a>
-
-<br><br>
-
-   <div class="d-inline p-2 bg-primary text-white"> Nom : {{ produit.nom }}</div><br><br>
-   <div class="d-inline p-2 bg-primary text-white"> prix : {{ produit.prix }}</div><br><br>
-   
-
+    {% block popup %}{% endblock %}
 {% endblock %}
