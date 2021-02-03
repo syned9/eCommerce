@@ -48,6 +48,11 @@ class Produit
      */
     private $categorie;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $urlImage;
+
 
 
     public function getId(): ?int
@@ -129,6 +134,18 @@ class Produit
     public function setCategorie(?Categories $categorie): self
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    public function getUrlImage(): ?string
+    {
+        return $this->urlImage;
+    }
+
+    public function setUrlImage(?string $urlImage): self
+    {
+        $this->urlImage = $urlImage;
 
         return $this;
     }
