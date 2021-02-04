@@ -19,7 +19,7 @@ class ProduitRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Produit::class);
     }
-    public const PAGINATOR_PER_PAGE =3;
+    public const PAGINATOR_PER_PAGE =12;
     public function getProduitPaginator(int $offset, string $nom = '', string $prix =''): Paginator
     {
         $queryBuilder = $this->createQueryBuilder('c');

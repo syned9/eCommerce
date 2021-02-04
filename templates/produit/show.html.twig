@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 
@@ -12,7 +11,7 @@
                             <span class="font-weight-bold">{{ produit.nom }} </span>
                         </div>
                         <div class="card-body">
-                            <p class="card-text text-truncate">Prix : {{ produit.prix }} euro</p>
+                            <p class="card-text text-truncate">Prix : {{ produit.prix }} €</p>
                         </div>
                         <div class="card-body">
                             <p class="card-text text-truncate">Description : {{ produit.description }}</p>
@@ -27,10 +26,10 @@
                                                                                 le produit n'est plus disponible
                                                                                 {% endif %}</p>
                         </div>
+                        
                         <div class="card-footer">
                             <a href="{{ path('modif', {id: produit.id}) }}" class="btn btn-warning">Modifier</a>
                             <a href="{{ path('delete', {id: produit.id}) }}" class="btn btn-warning">Suprimer</a>
-
                         </div>
                     </div>
                 </div>

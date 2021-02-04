@@ -3,7 +3,10 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
@@ -41,6 +44,18 @@ class Produit
      * @ORM\Column(type="boolean", nullable=true)
      */
     private $disponibilite;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $images;
+
+    
+
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -109,5 +124,30 @@ class Produit
     public function __toString(): string
     {
             return $this->nom;
-         }
+    
+    }
+    public function setImage(File $file = null)
+    {
+        $this->image = $file;
+    }
+
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    public function getImages(): ?string
+    {
+        return $this->images;
+    }
+
+    public function setImages(string $images): self
+    {
+        $this->images = $images;
+
+        return $this;
+    }
+
+    
+
 }
