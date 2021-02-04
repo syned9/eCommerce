@@ -16,7 +16,7 @@ easy_admin:
           - { property: "prix", type: "float" }
           - { property: "disponibilite", type: "boolean" }
           - { property: "categorie" }
-          
+          - url_image
       edit:
         fields:
           - nom
@@ -25,6 +25,7 @@ easy_admin:
           - { property: "prix", type: "money" }
           - { property: "disponibilite", type: "checkbox" }
           - { property: "categorie" }
+          - url_image
 
       new:
         fields:
@@ -34,6 +35,7 @@ easy_admin:
           - { property: "prix", type: "money" }
           - { property: "disponibilite", type: "checkbox" }
           - { property: "categorie" }
+          - url_image
 
     Categories:
       class: App\Entity\Categories

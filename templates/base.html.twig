@@ -127,11 +127,11 @@
                     {# <button onclick="window.location.href = 'http://localhost/chambres_dhotes/vue/activites.php';" type="button">Activites</button> #}
                 </div>
                 <hr>
-                {% if connexionETAT == 'connect' and role == 'admin' %}
+                {# {% if connexionETAT == 'connect' and role == 'admin' %}
                     <button onclick="window.location.href = '{{ path('commande') }}';" type="button">Gestion commandes</button>
                 {% else %}
                     <button onclick="window.location.href = 'http://localhost/chambres_dhotes/vue/contact.php';" type="button">Contact</button>
-                {% endif %}
+                {% endif %} #}
                 <hr>
                 
                 <div class="compteRolling">
@@ -142,12 +142,13 @@
                         <path d="m240 64c-44.184 0-80 35.816-80 80s35.816 80 80 80 80-35.816 80-80c-0.046875-44.164-35.836-79.953-80-80zm0 144c-35.348 0-64-28.652-64-64s28.652-64 64-64 64 28.652 64 64c-0.039062 35.328-28.672 63.961-64 64z"/>
                         </svg>
                     </button>
-                    {% if connexionETAT == 'connect' %}
+                    {# {% if connexionETAT == 'connect' %}
                         <button onclick="window.location.href = '{{ path('app_logout') }}';" type="button">Deconnexion</button>
                     {% else %}
-                        <button onclick="window.location.href = '{{ path('connexion') }}';" type="button">Connexion</button>
+                        <button onclick="window.location.href = '{{ path('connecion') }}';" type="button">Login</button>
                         <button onclick="window.location.href = '{{ path('connexion') }}';" type="button">Inscription</button>
-                    {% endif %}
+                    {% endif %} #}
+                    
                     {# <?php if(!empty($_COOKIE['connexionETAT']) && $_COOKIE['connexionETAT'] == 'connect') { ?>
                         <button onclick="window.location.href = 'http://localhost/chambres_dhotes/function/deconnexion.php';" type="button">Deconnexion</button>
                     <?php } else { ?>
