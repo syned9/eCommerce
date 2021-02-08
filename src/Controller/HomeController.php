@@ -56,28 +56,27 @@ class HomeController extends AbstractController
 
         ]);
     }
- 
-     /**
-     * 
-     *@Route("/products/{categorie}/categoriesFilter", name ="categorie")
-     * 
+
+    /**
+     * @Route("/productsByCategory", name ="productsCategory")
      */
-    public function categorie(Request $request, ProduitRepository $productstRepository,
-    CategoriesRepository $categoriesRepository):Response 
-    { 
+    public function productsCategory(ProduitRepository $productstRepository, 
+    Request $request, CategoriesRepository $categoriesRepository ):Response 
+    {
+        $offset = max(0, $request->query->getInt('offset', 0));
+        $categorieId = $request->query->get('categorie', '');
+        if (!empty($categorieId)) {
+            $categorie = $categoriesRepository->find($categorieId);
+        }
         
-         $categorieId = $request->query->get('categorie', '');
-        
-         $offset = max(0, $request->query->getInt('offset', 0));
-        $paginatorCategorie = $productstRepository->getCategoriePaginator($offset, $categorieId);
+        $paginator = $productstRepository->getCategoriePaginator($offset, $categorie);
         $categories = $categoriesRepository->findAll();
        
-        return $this->render('home/categories.html.twig', [
-            'categoriesFilter'=>$paginatorCategorie,
-            'categories'=>$categories,
+        return $this->render('home/userProducts.html.twig',[
+            'products'=>$paginator,
+             'categories'=>$categories,
             'previous' => $offset - ProduitRepository::PAGINATOR_PER_PAGE,
-            'next' => min(count($paginatorCategorie), $offset + ProduitRepository::PAGINATOR_PER_PAGE),
+            'next' => min(count($paginator), $offset + ProduitRepository::PAGINATOR_PER_PAGE),
         ]);
     }
-    
 }

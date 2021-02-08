@@ -7,7 +7,7 @@
 <h1> Categories<h1>
 <ul class='barmenu'>
 {% for categorie in categories %}
-<li><a href="{{ path('categorie', {categorie: categorie.nom}) }}">{{categorie.nom}}</a></li>
+<li><a href="{{ path('productsCategory', {categorie: categorie.id}) }}">{{categorie.nom}}</a></li>
 {% endfor %}
 </ul>
 </div>
