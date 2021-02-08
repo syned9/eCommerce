@@ -23,7 +23,7 @@ class ProduitController extends AbstractController
     {
         $noms = $produitRepository->getListNom();
         $prixs = $produitRepository->getListPrix();
-        $categories = $categoriesRepository->getListNom();
+        $categories = $categoriesRepository->getListNoms();
         
         $nom_search = $request->query->get('nom_search', '');
         $prix_search = $request->query->get('prix_search', '');

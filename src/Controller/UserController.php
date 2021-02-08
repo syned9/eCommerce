@@ -28,26 +28,26 @@ class UserController extends AbstractController
     // /**
     //  * @Route("/connexion", name="connexion")
     //  */
-    // public function connexion(Request $request): Response
-    // {
-    //     $form = $this->createForm(LoginFormType::class);
-    //     $form->handleRequest($request);
-    //     if($form->isSubmitted() && $form->isValid()) {
-    //         $user = $this->getUser($form->get('pseudo')->getData());
-    //         print_r($user->getPassword());
-    //         if($user->getPassword() == $form->get('password')->getData()) {
-    //             return $this->redirectToRoute('home', [
-    //                 'connexionEtat' => 'connect',
-    //                 'role' => 'user',
-    //                 'pseudo' => $user->getPseudo()
-    //             ]);
-    //         }
+     public function connexion(Request $request): Response
+     {
+         $form = $this->createForm(LoginFormType::class);
+         $form->handleRequest($request);
+         if($form->isSubmitted() && $form->isValid()) {
+            $user = $this->getUser($form->get('pseudo')->getData());
+            print_r($user->getPassword());
+             if($user->getPassword() == $form->get('password')->getData()) {
+                 return $this->redirectToRoute('home', [
+                     'connexionEtat' => 'connect',
+                     'role' => 'user',
+                     'pseudo' => $user->getPseudo()
+                 ]);
+             }
 
-    //     }
-    //     return $this->render('user/login.html.twig', [
-    //         'form_login' => $form->createView(),
-    //                 ]);
-    // }
+         }
+         return $this->render('user/login.html.twig', [
+             'form_login' => $form->createView(),
+                     ]);
+     }
 
     /**
      * @Route("/compte", name="compte")

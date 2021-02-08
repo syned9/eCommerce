@@ -18,7 +18,7 @@ class CategoriesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Categories::class);
     }
-    public function getListNom()
+    public function getListNoms()
     {
         $categories = [];
         foreach ($this->createQueryBuilder('c')

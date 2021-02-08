@@ -1,0 +1,136 @@
+body{
+
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.menu{ 
+ margin-left: 50px;
+
+}
+
+.navbar-menu{
+    background-color: #130845;
+}
+
+.menu li{
+    padding-right: 40px; 
+} 
+
+.menu li a { 
+    color: #fff;
+}
+#logo-site{ 
+    margin-top: -15px;
+    font-size: 50px;
+    color:#130845;
+    font-weight: lighter;
+}
+
+#btn-search{
+    border: 1px solid #130845 !important;
+    color:#130845;
+}
+
+.main{
+    display: flex;
+}
+
+.articles{ 
+   margin-top: 90px; 
+   margin-left: 150px !important;
+}
+
+.articles p{
+
+    text-align: center;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+
+
+.filter{
+
+    margin-top:95px;
+    padding-right: 150px;
+    height:500px; 
+    background-color: #130845;
+}
+.filter h1{
+    color:#fff;
+    font-size: 25px;
+    text-decoration: underline #fff;
+    transform: translate(35px, 30px);
+    padding-left:50px;
+}
+
+.buttons{
+    margin-left:50%;
+    margin-right: 20%;
+    padding:60px;
+}
+.footer{
+    margin-top: 50px;
+    padding: 25px 15px 0 15px;
+    margin-right:-5px; 
+    margin-left: -15px;
+    height: 200px; 
+    background-color: #130845;
+    display: flex;
+    justify-content: space-around;
+}
+.footer h1{
+    color:#fff; 
+    font-size: 20px;
+    text-decoration: underline #fff;
+    text-align: center;
+    padding-bottom: 15px;
+}
+.footer p {
+    font-size: 14px;
+    color: #fff;
+    margin: 25px;
+}
+
+.desc-article{
+    margin-top:60px;
+}
+
+.compte{ 
+
+    display: flex;
+}
+.menu-compte{
+    margin-right:200px;
+    margin-top:95px;
+    padding-right: 150px;
+    margin-left: 10px;
+    width:300px;
+    height:500px; 
+    background-color: #130845;
+   
+}
+.menu-compte h1{
+    color:#fff;
+    font-size: 25px;
+    transform: translate(35px, 30px);
+    padding-left:50px;
+}
+
+
+.barmenu{
+    margin: 25px -50px 0 -40px
+}
+.barmenu li{ 
+    margin-bottom: 15px;
+    font-size: 16px;
+    list-style: none;
+    white-space: nowrap;
+    text-decoration: none;
+
+}
+.barmenu li a{
+
+    text-decoration: none !important;
+    color: #fff;
+}

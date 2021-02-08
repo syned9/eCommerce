@@ -46,16 +46,17 @@ class Produit
     private $disponibilite;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="produits")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $images;
+    private $categorie;
 
-    
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $urlImage;
 
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
+
 
     public function getId(): ?int
     {
@@ -121,33 +122,34 @@ class Produit
 
         return $this;
     }
-    public function __toString(): string
-    {
-            return $this->nom;
+
     
-    }
-    public function setImage(File $file = null)
+    public function __toString() :string
     {
-        $this->image = $file;
-    }
-
-    public function getImage()
-    {
-        return $this->image;
+        return $this->nom;
     }
 
-    public function getImages(): ?string
+    public function getCategorie(): ?Categories
     {
-        return $this->images;
+        return $this->categorie;
     }
 
-    public function setImages(string $images): self
+    public function setCategorie(?Categories $categorie): self
     {
-        $this->images = $images;
+        $this->categorie = $categorie;
 
         return $this;
     }
 
-    
+    public function getUrlImage(): ?string
+    {
+        return $this->urlImage;
+    }
 
+    public function setUrlImage(?string $urlImage): self
+    {
+        $this->urlImage = $urlImage;
+
+        return $this;
+    }
 }

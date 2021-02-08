@@ -36,11 +36,11 @@ class ProduitRepository extends ServiceEntityRepository
                 ->andWhere('c.prix = :prix')
                 ->setParameter('prix', $prix);
         }
-       /* if ($categorie) {
+        if ($categorie) {
             $queryBuilder = $queryBuilder
                 ->andWhere('c.nom = :nom')
                 ->setParameter('nom', $categorie);
-        }*/
+        }
         $query = $queryBuilder
         ->orderBy('c.nom', 'DESC')
         ->setMaxResults(self::PAGINATOR_PER_PAGE)
@@ -75,7 +75,7 @@ class ProduitRepository extends ServiceEntityRepository
         }
         return $prixs;
     }
-   
+    
 
     // /**
     //  * @return Produit[] Returns an array of Produit objects
@@ -92,7 +92,7 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    */
+    
 
     /*
     public function findOneBySomeField($value): ?Produit
