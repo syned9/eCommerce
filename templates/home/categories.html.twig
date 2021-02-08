@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div class='main'>
+<div class='filter'>
+<h1> Categories<h1>
+<ul class='barmenu'>
+{% for categorie in categories %}
+<li><a href="{{ path('categorie', {categorie: categorie.nom}) }}">{{categorie.nom}}</a></li>
+{% endfor %}
+</ul>
+</div>
+ <div class='articles' style='display: flex; flex-wrap: wrap;'  >
+        {% for categorieFilter in categoriesFilter %}
+		<div class="card" style="width: 18rem; margin-right:50px; margin-bottom:25px">
+			<img src="{{ asset('/images/' ~ categorieFilter.UrlImage)}}"
+ class="card-img-top img-article"
+   style="width:288px; height:205px">
+			<div class="card-body">
+				<p>{{categorieFilter.nom}}<p>
+		         <p>{{categorieFilter.prix}} euros</p>
+                <p><a href="{{ path('commande', {id:categorieFilter.id}) }}" class='btn'
+                 style='background-color: #130845;color:#fff '>Voir le produit<a>
+			</div>
+		</div>
+        {% endfor %}
+      </div>  
+    </div>
+     <div class='buttons'>  
+{% if previous >= 0 %}
+<a href="{{ path('categorie', {offset: previous }) }}" 
+ class="btn btn-sm btn-primary w-25" style='background-color: #130845;color:#fff '>Précedent</a>
+{% endif %}
+{% if next < categoriesFilter|length %}
+<a href="{{ path('categorie', {offset: next }) }}"
+ class="btn btn-sm btn-primary w-25" style='background-color: #130845;color:#fff ' >Suivant</a>
+{% endif %}
+</div>
+{% endblock %}

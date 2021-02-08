@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<div  style=' 
+    margin-left: 50px;
+    margin-top: 200px;'>
+
+<article style ='display: flex; width:1500px;' >
+
+    <header class='img'>
+  <img src="{{ asset('/images/' ~ product.UrlImage)}}" style =' width: 700px; height:400px' class='detail-img'></img>
+    </header>
+
+<footer style =' margin:50px 60px 0 40px;'>
+      <h4 style='text-transform:uppercase'>{{product.nom}}</h4>
+      <p>{{product.prix}} Euros</p>
+      <h5> Description : </h5>
+      <p style='style="word-wrap: break-word; width: 100px"'> {{product.description}} </p>
+      <form method='GET' class='panier'>
+      <label> Quantité : </label>
+      <input type='number' name='quantite'>
+      <button type='submit' name='submit'
+       style='display:block; 
+       width:400px;
+       margin-top: 40px;
+       background-color:#130845;
+       border:none;
+       color: #fff;
+
+       '> Ajouter au panier</button>
+      </form>
+</footer>
+  <div>
+
+</article>
+</div>
+
+{% endblock %}

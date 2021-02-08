@@ -49,15 +49,7 @@ class UserController extends AbstractController
     //                 ]);
     // }
 
-    /**
-     * @Route("/compte", name="compte")
-     */
-    public function compte(): Response
-    {
-        return $this->render('user/compte.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
+ 
 
     /**
      * @Route("/inscription", name="inscription")
