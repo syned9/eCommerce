@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Produit;
+use App\Entity\Categories;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
@@ -18,9 +19,11 @@ class ProduitRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Produit::class);
+        //parent::__construct($registry, Categories::class);
+
     }
     public const PAGINATOR_PER_PAGE =12;
-    public function getProduitPaginator(int $offset, string $nom = '', string $prix =''): Paginator
+    public function getProduitPaginator(int $offset, string $nom = '', string $prix ='', string $categorie =''): Paginator
     {
         $queryBuilder = $this->createQueryBuilder('c');
         if ($nom) {
@@ -33,6 +36,11 @@ class ProduitRepository extends ServiceEntityRepository
                 ->andWhere('c.prix = :prix')
                 ->setParameter('prix', $prix);
         }
+       /* if ($categorie) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('c.nom = :nom')
+                ->setParameter('nom', $categorie);
+        }*/
         $query = $queryBuilder
         ->orderBy('c.nom', 'DESC')
         ->setMaxResults(self::PAGINATOR_PER_PAGE)
@@ -67,6 +75,7 @@ class ProduitRepository extends ServiceEntityRepository
         }
         return $prixs;
     }
+   
 
     // /**
     //  * @return Produit[] Returns an array of Produit objects

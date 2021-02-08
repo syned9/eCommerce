@@ -6,6 +6,7 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Form\ProduitFormType;
+use App\Repository\CategoriesRepository;
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,22 +19,26 @@ class ProduitController extends AbstractController
     /**
      * @Route("/", name="homepage")
      */
-    public function index(ProduitRepository $produitRepository, Request $request): Response
+    public function index(CategoriesRepository $categoriesRepository, ProduitRepository $produitRepository, Request $request): Response
     {
         $noms = $produitRepository->getListNom();
         $prixs = $produitRepository->getListPrix();
+        $categories = $categoriesRepository->getListNom();
         
         $nom_search = $request->query->get('nom_search', '');
         $prix_search = $request->query->get('prix_search', '');
+        $categorie_search = $request->query->get('categorie_search', '');
         
 
         $offset = max(0, $request->query->getInt('offset', 0));
-        $paginator = $produitRepository->getProduitPaginator($offset, $nom_search, $prix_search);
+        $paginator = $produitRepository->getProduitPaginator($offset, $nom_search, $prix_search, $categorie_search);
         return $this->render('produit/index.html.twig', [
             'nom_search' => $nom_search,
             'noms' => $noms,
             'prix_search'=> $prix_search,
             'prixs' =>  $prixs,
+            'categorie_search' => $categorie_search,
+            'categories' => $categories,
             'produits' => $paginator,
             'previous' => $offset - ProduitRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProduitRepository::PAGINATOR_PER_PAGE),

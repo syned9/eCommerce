@@ -18,6 +18,19 @@ class CategoriesRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Categories::class);
     }
+    public function getListNom()
+    {
+        $categories = [];
+        foreach ($this->createQueryBuilder('c')
+        ->select('c.nom')
+        ->distinct(true)
+        ->orderBy('c.nom', 'ASC')
+        ->getQuery()
+        ->getResult() as $cols) {
+            $categories[] = $cols['nom'];
+        }
+        return $categories;
+    }
 
     // /**
     //  * @return Categories[] Returns an array of Categories objects

@@ -8,28 +8,34 @@
                             <a href="{{ path('prod') }}" class="btn btn-warning">Liste des produits</a>
 
                         </div>
+                        <div>
 <form>
 <div class="col-4">
                         <div class="row form-group">
-                            <label for="year" class="col-sm-6 col-form-label text-right">Nom :</label>
+                            <label for="nom" class="col-sm-6 col-form-label text-right">Nom :</label>
                             <div class="col-sm-6">
-                                <select type="text" class="form-control" id="nom_search" name="nom_search">
-                                    <option></option>
-                                    {% for nom in noms %}
-                                        <option {{ (nom == nom_search ? 'selected') }}>{{ nom }}</option>
-                                    {% endfor %}
-                                </select>
+                                <input type="search" class="form-control" id="nom_search" name="nom_search" >  
+                                </input>
                             </div>
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="row form-group">
-                            <label for="city" class="col-sm-6 col-form-label text-right">Prix :</label>
+                            <label for="prix" class="col-sm-6 col-form-label text-right">Prix :</label>
                             <div class="col-sm-6">
-                                <select type="text" class="form-control" id="prix_search" name="prix_search">
+                                <input type="search" class="form-control" id="prix_search" name="prix_search">
+                                </input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row form-group">
+                            <label for="city" class="col-sm-6 col-form-label text-right">Categorie :</label>
+                            <div class="col-sm-6">
+                                <select type="text" class="form-control" id="categorie_search" name="categorie_search">
                                     <option></option>
-                                    {% for prix in prixs %}
-                                        <option {{ (prix == prix_search ? 'selected') }}>{{ prix }}</option>
+                                    {% for categorie in categories %}
+                                        <option {{ (categorie == categorie_search ? 'selected') }}>{{ categorie }}</option>
                                     {% endfor %}
                                 </select>
                             </div>

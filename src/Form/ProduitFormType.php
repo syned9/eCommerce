@@ -4,7 +4,7 @@ namespace App\Form;
 
 use App\Entity\Produit;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +21,7 @@ class ProduitFormType extends AbstractType
             ->add('disponibilite')
             ->add('images')
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer'
+                'label'=> 'Enregistré'
             ])
         ;
     }
