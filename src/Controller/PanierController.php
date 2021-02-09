@@ -22,7 +22,7 @@ class PanierController extends AbstractController
     public function index(SessionInterface $session, ProduitRepository $produitRepository): Response
     {
         $panier = $session->get('panier', []);
-         $panierWithData[] = [];
+        // $panierWithData[] = [];
         foreach($panier as $id => $quantite) {
             $panierWithData[] = [
                 'produit' => $produitRepository->find($id),
