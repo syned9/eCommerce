@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\AdminRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -67,6 +69,12 @@ class Admin implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $adresse;
+
+
+    public function __construct()
+    {
+        $this->produit = new ArrayCollection();
+    }
 
 
     public function getId(): ?int

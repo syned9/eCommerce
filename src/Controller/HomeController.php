@@ -10,6 +10,7 @@ use App\Repository\ProduitRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class HomeController extends AbstractController
@@ -21,15 +22,28 @@ class HomeController extends AbstractController
      *@Route("/home", name ="home")
      * 
      */
-    public function home(ProduitRepository $productstRepository, Request $request):Response 
+    public function index(SessionInterface $session): Response
+    {
+        if($session->get("connexionEtat") == "connect") {
+            $connexionEtat = "connect";
+        } else {
+            $connexionEtat = "";
+        }
+
+        return $this->render('home/home.html.twig', [
+            "connexionEtat" => $connexionEtat
+
+        ]);
+    }
+
+
+  /*  public function home(SessionInterface $session):Response 
     { 
         
-        $offset = max(0, $request->query->getInt('offset', 0));
-        $paginator = $productstRepository->getProductPaginator($offset);
         
         return $this->render('home/home.html.twig');
     }
-
+*/
 
    
      /**
@@ -38,9 +52,16 @@ class HomeController extends AbstractController
      * 
      */
     public function userProduct(ProduitRepository $productstRepository, 
-    Request $request, CategoriesRepository $categoriesRepository ):Response 
+    Request $request, CategoriesRepository $categoriesRepository ,  SessionInterface $session):Response 
     { 
-        
+        if($session->get("connexionEtat") == "connect") {
+            $connexionEtat = "connect";
+        } else {
+            $connexionEtat = "";
+        }
+
+
+
         $offset = max(0, $request->query->getInt('offset', 0));
         
         $paginator = $productstRepository->getProductPaginator($offset);
@@ -52,6 +73,7 @@ class HomeController extends AbstractController
              'categories'=>$categories,
             'previous' => $offset - ProduitRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProduitRepository::PAGINATOR_PER_PAGE),
+            "connexionEtat" => $connexionEtat,
           
 
         ]);
@@ -60,9 +82,17 @@ class HomeController extends AbstractController
     /**
      * @Route("/productsByCategory", name ="productsCategory")
      */
+
     public function productsCategory(ProduitRepository $productstRepository, 
-    Request $request, CategoriesRepository $categoriesRepository ):Response 
+    Request $request, CategoriesRepository $categoriesRepository, SessionInterface $session ):Response 
     {
+        if($session->get("connexionEtat") == "connect") {
+            $connexionEtat = "connect";
+        } else {
+            $connexionEtat = "";
+        }
+
+
         $offset = max(0, $request->query->getInt('offset', 0));
         $categorieId = $request->query->get('categorie', '');
         if (!empty($categorieId)) {
@@ -77,6 +107,10 @@ class HomeController extends AbstractController
              'categories'=>$categories,
             'previous' => $offset - ProduitRepository::PAGINATOR_PER_PAGE,
             'next' => min(count($paginator), $offset + ProduitRepository::PAGINATOR_PER_PAGE),
+            "connexionEtat" => $connexionEtat
+
         ]);
-    }
+     }
+
+    
 }

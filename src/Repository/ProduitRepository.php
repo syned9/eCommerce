@@ -22,6 +22,7 @@ class ProduitRepository extends ServiceEntityRepository
     }
 
 
+
     public const PAGINATOR_PER_PAGE = 9;
 
     public function getProductPaginator(int $offset):Paginator
@@ -48,4 +49,20 @@ class ProduitRepository extends ServiceEntityRepository
 
         return new Paginator($query);
     }
+
+    // /**
+    //  * @return Produit[] Returns an array of Produit objects
+    //  */
+    public function getProduits()
+    {
+        return $this->createQueryBuilder('p')
+            // ->andWhere('p.exampleField = :val')
+            // ->setParameter('val', $value)
+            ->orderBy('p.id', 'ASC')
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 }
