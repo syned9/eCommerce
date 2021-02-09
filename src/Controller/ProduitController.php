@@ -103,12 +103,12 @@ class ProduitController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $images= $form->get('images')->getData();
-            foreach($images as $image){
-                $fichier = md5(uniqid()). '.' .$image->guessExtension();
-                $image->move($this->getParameter('images_directory'),$fichier);
+            $images= $form->get('UrlImage')->getData();
+           // foreach($images as $image){
+              // $fichier = md5(uniqid()). '.' .$image->guessExtension();
+              //  $image->move($this->getParameter('images_directory'),$fichier);
                
-            }
+        
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($produit);
             $entityManager->flush();

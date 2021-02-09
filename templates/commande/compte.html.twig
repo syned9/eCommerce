@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon compte{% endblock %}
+
+{% block body %}
+<div class='compte'>
+<div class='menu-compte'>
+<h1> Compte<h1>
+<ul class='barmenu'>
+<li><a href='#'>Mon profil</a></li>
+<li><a href="#">Mon panier</a></li>
+<li><a href='#'>Mes commandes</a></li>
+<li><a href='#'>Réglages du compte</a></li>
+</ul>
+</div>
+<div>
+<table class="table" style='background-color:#fff; 
+color:#130845;
+ width:850px;
+ margin-top: 100px'>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+<div>
+{% endblock %}
+
+
+
+

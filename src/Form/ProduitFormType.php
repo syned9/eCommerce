@@ -39,7 +39,7 @@ class ProduitFormType extends AbstractType
             ]
             
         ])
-        ->add('urlImage', TextType::class,[
+        ->add('UrlImage', TextType::class,[
             'label'=>'Ajouter une image'
         ])
         ->add('submit', SubmitType::class,[

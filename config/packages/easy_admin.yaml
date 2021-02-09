@@ -13,7 +13,7 @@ easy_admin:
           - description
           - quantite
           - prix
-          - images
+          - urlimage
           - { property: "disponibilite", type: "boolean" }
       new:
           fields:
@@ -21,7 +21,7 @@ easy_admin:
           - description
           - quantite
           - prix
-          - images
+          - urlimage
           - { property: "disponibilite", type: "boolean" }
       edit:
           fields:

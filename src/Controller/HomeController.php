@@ -21,11 +21,11 @@ class HomeController extends AbstractController
      *@Route("/home", name ="home")
      * 
      */
-    public function home(ProduitRepository $productstRepository, Request $request):Response 
+    public function home( Request $request):Response 
     { 
         
         $offset = max(0, $request->query->getInt('offset', 0));
-        $paginator = $productstRepository->getProductPaginator($offset);
+       
         
         return $this->render('home/home.html.twig');
     }
@@ -43,7 +43,7 @@ class HomeController extends AbstractController
         
         $offset = max(0, $request->query->getInt('offset', 0));
         
-        $paginator = $productstRepository->getProductPaginator($offset);
+        $paginator = $productstRepository->getProduitPaginator($offset);
         $categories = $categoriesRepository->findAll();
        
         return $this->render('home/userProducts.html.twig',[
