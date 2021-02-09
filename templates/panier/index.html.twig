@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CommandeController!{% endblock %}
+{% block title %}Hello PanierController!{% endblock %}
 
 {% block body %}
 <style>
@@ -9,7 +9,7 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Panier validé ! ✅</h1>
+    <h1>Panier ! ✅</h1>
 
     {% if items | length > 0 %}
         <table class="table">
@@ -30,6 +30,11 @@
                             <td>{{ item.produit.prix }}</td>
                             <td>{{ item.quantite }}</td>
                             <td>{{ item.produit.prix * item.quantite }}</td>
+                            <td>
+                                <a href="{{ path('panier_remove', {id: item.produit.id}) }}" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
                         </tr>
                     {% endif %}                    
                 {% endfor %}
@@ -42,12 +47,9 @@
                 </tr>
             </tfoot>
         </table>
-        <form action="{{ path('commande_validation') }}" method="post">
-            <input type="text" name="adresse"  placeholder="adresse de livraison">
-            <button type="submite" class="btn btn-succes float-right">Validez</button>
-        </form>
+        <button type="button" onclick="window.location.href = '{{ path('panier_validation') }}';">Valider</button>
     {% else %}
-        <p> Votre commande est vide !</p>
+        <p>Votre panier est vide</p>
     {% endif %}
 </div>
 {% endblock %}

@@ -3,8 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Admin;
-use App\Entity\User;
-use App\Form\LoginFormType;
+use App\Entity\Panier;
 use App\Form\UserInscriptionFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,47 +14,14 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
-    /**
-     * @Route("/user", name="user")
-     */
-    public function index(): Response
-    {
-        return $this->render('user/index.html.twig', [
-            'controller_name' => 'UserController',
-        ]);
-    }
-
-    // /**
-    //  * @Route("/connexion", name="connexion")
-    //  */
-    // public function connexion(Request $request): Response
-    // {
-    //     $form = $this->createForm(LoginFormType::class);
-    //     $form->handleRequest($request);
-    //     if($form->isSubmitted() && $form->isValid()) {
-    //         $user = $this->getUser($form->get('pseudo')->getData());
-    //         print_r($user->getPassword());
-    //         if($user->getPassword() == $form->get('password')->getData()) {
-    //             return $this->redirectToRoute('home', [
-    //                 'connexionEtat' => 'connect',
-    //                 'role' => 'user',
-    //                 'pseudo' => $user->getPseudo()
-    //             ]);
-    //         }
-
-    //     }
-    //     return $this->render('user/login.html.twig', [
-    //         'form_login' => $form->createView(),
-    //                 ]);
-    // }
 
     /**
-     * @Route("/compte", name="compte")
+     * @Route("profile/compte", name="compte")
      */
     public function compte(): Response
     {
         return $this->render('user/compte.html.twig', [
-            'controller_name' => 'UserController',
+            'connexionEtat' => 'connect',
         ]);
     }
 
@@ -65,6 +31,7 @@ class UserController extends AbstractController
     public function inscription(Request $request, EntityManagerInterface $entityManager, UserPasswordEncoderInterface $encoder): Response
     {
         $user = new Admin();
+        $panier = new Panier();
         $form = $this->createForm(UserInscriptionFormType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()) {
@@ -73,7 +40,10 @@ class UserController extends AbstractController
                 $plainPassword = $form->get('password')->getData('first-option');
                 $encoded = $encoder->encodePassword($user, $plainPassword);
                 $user->setPassword($encoded);
+                $panier->setAdmin($user);
                 $entityManager->persist($user);
+                $entityManager->flush();
+                $entityManager->persist($panier);
                 $entityManager->flush();
                 return $this->redirectToRoute('home', ["username" => $user->getUsername()]);
             } else {
@@ -83,6 +53,7 @@ class UserController extends AbstractController
         }
         return $this->render('user/inscription.html.twig', [
             'form_user' => $form->createView(),
+            "connexionEtat" => ""
         ]);
     }
 }

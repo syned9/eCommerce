@@ -17,13 +17,17 @@
         <li>Your template at <code><a href="{{ 'C:/Users/dinys/symfony/projet/eCommerce/templates/produit/index.html.twig'|file_link(0) }}">templates/produit/index.html.twig</a></code></li>
     </ul>
 </div> #}
-    {% for produit in produits %}
-        
-        <a href="{{ path('produit_show', {'id': produit.id }) }}" class="btn btn-succes float-right">
+    <form action="{{ path('panier_add', {id: produit.id}) }}" method="post">
+        <input type="number" name="quantite" max="{{ produit.quantite }}" min="1" value="1" placeholder="1">
+        <button type="submite" class="btn btn-succes float-right">Ajouter</button>
+    </form>
+        {# {{ form(form_panier)}} #}
+        {# <input type="number" name="quantite" max="{{ produit.quantite }}" min="1" value="1" placeholder="1">
+        <button onclick="window.location.href = '{{ path('panier_add', {'id': produit.id }) }}';" type="submite" class="btn btn-succes float-right">Ajouter</button> #}
+        {# <a href="{{ path('panier_add', {'id': produit.id }) }}" class="btn btn-succes float-right">
             <i class="fas fa-shopping-cart mr-1"></i>
-            Voir
-        </a>
-    {% endfor %}
+            ajouter
+        </a> #}
         
 
 {% endblock %}
