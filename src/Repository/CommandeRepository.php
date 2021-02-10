@@ -2,8 +2,10 @@
 
 namespace App\Repository;
 
+use App\Entity\Admin;
 use App\Entity\Commande;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -22,20 +24,22 @@ class CommandeRepository extends ServiceEntityRepository
     // /**
     //  * @return Commande[] Returns an array of Commande objects
     //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('c')
-            ->andWhere('c.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('c.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
 
+    public const PAGINATOR_PER_PAGE = 2;
+    public function findByUser(Admin $user, int $offset): Paginator
+    {
+        $query = $this->createQueryBuilder('c')
+            ->andWhere('c.user = :val')
+            ->setParameter('val', $user)
+            ->orderBy('c.date', 'DESC')
+            ->setMaxResults(self::PAGINATOR_PER_PAGE)
+            ->setFirstResult($offset)
+            ->getQuery()
+        ;
+        return new Paginator($query);
+    }
+    
+    
     /*
     public function findOneBySomeField($value): ?Commande
     {

@@ -25,5 +25,56 @@
         </a>
     {% endfor %}
         
+<div class="card-footer">
+                            <a href="{{ path('newProduct') }}" class="btn btn-warning">Ajouter un produit</a>
+                            <a href="{{ path('prod') }}" class="btn btn-warning">Liste des produits</a>
 
+                        </div>
+                        <div>
+<form>
+<div class="col-4">
+                        <div class="row form-group">
+                            <label for="nom" class="col-sm-6 col-form-label text-right">Nom :</label>
+                            <div class="col-sm-6">
+                                <input type="search" class="form-control" id="nom_search" name="nom_search" >  
+                                </input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row form-group">
+                            <label for="prix" class="col-sm-6 col-form-label text-right">Prix :</label>
+                            <div class="col-sm-6">
+                                <input type="search" class="form-control" id="prix_search" name="prix_search">
+                                </input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="row form-group">
+                            <label for="city" class="col-sm-6 col-form-label text-right">Categorie :</label>
+                            <div class="col-sm-6">
+                                <select type="text" class="form-control" id="categorie_search" name="categorie_search">
+                                    <option></option>
+                                    {% for categorie in categories %}
+                                        <option {{ (categorie == categorie_search ? 'selected') }}>{{ categorie }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 ">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </div>
+                </div>
+            </form>
+  <div class="card-body">
+            <ul class="list-group">
+                {% for produit in produits %}
+                    <a href="{{ path('produits', {id: produit.id}) }}">
+                        <li class="list-group-item list-group-item-action">{{ produit }}</li>
+                    </a>
+                {% endfor %}
+            </ul>
+        </div>
 {% endblock %}

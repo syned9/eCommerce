@@ -27,7 +27,7 @@ class SecurityController extends AbstractController
         $session->set('user', $this->getUser());
         $session->set("connexionEtat", "connect");
 
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error, "connexionEtat" => ""]);
     }
 
     /**

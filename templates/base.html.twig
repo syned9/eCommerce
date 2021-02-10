@@ -117,9 +117,9 @@
                 {# <img src="../img/Logo-gite.png"> #}
             </div>
             <div class="menuNavigation">
-                <button onclick="window.location.href = '{{ path('home') }}'';" type="button">HOME</button>
+                <button onclick="window.location.href = '{{ path('homepage') }}';" type="button">HOME</button>
                 <hr>
-                <button onclick="window.location.href = '{{ path('produit') }}';" type="button">Produits</button>
+                <button onclick="window.location.href = '{{ path('products') }}';" type="button">Produits</button>
                 <hr>
                 <button onclick="window.location.href = '{{ path('panier') }}';" type="button">Panier</button>
                 <hr>
@@ -132,8 +132,8 @@
                         </svg>
                     </button>
                     {% if connexionEtat == 'connect' %}
-                        <button onclick="window.location.href = '{{ path('profile') }}';" type="button">Mon Profile</button>
-                        <button onclick="window.location.href = '{{ path('commande') }}';" type="button">Mes Commandes</button>
+                        <button onclick="window.location.href = '{{ path('compte') }}';" type="button">Mon Compte</button>
+                        <button onclick="window.location.href = '{{ path('Mes_commandes') }}';" type="button">Mes Commandes</button>
                         <button onclick="window.location.href = '{{ path('app_logout') }}';" type="button">Deconnexion</button>
                     {% else %}
                         <button onclick="window.location.href = '{{ path('app_login') }}';" type="button">Login</button>
@@ -149,6 +149,26 @@
             {% block body %}
                 <h1>Hello, world!</h1>
             {% endblock %}
+        </div>
+        <div class="footer">
+     <div>
+      <h1>Services</h1>
+      <p> quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+   ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+   voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+      </div>
+     <div> 
+  <h1>conditions générales de vente</h1>
+  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod 
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,.</p>
+     </div>
+     <div> 
+     <h1>Aide et Information</h1>
+     <p> quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+   ea commodo consequat. Duis aute irure dolor in reprehenderit in 
+   voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
+     </div>
+</div>
         </div>
     </main>
 

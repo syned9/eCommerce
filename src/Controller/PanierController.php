@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Length;
 
 class PanierController extends AbstractController
 {
@@ -22,7 +23,7 @@ class PanierController extends AbstractController
     public function index(SessionInterface $session, ProduitRepository $produitRepository): Response
     {
         $panier = $session->get('panier', []);
-        // $panierWithData[] = [];
+        $panierWithData[] = [];
         foreach($panier as $id => $quantite) {
             $panierWithData[] = [
                 'produit' => $produitRepository->find($id),
@@ -30,22 +31,25 @@ class PanierController extends AbstractController
             ];
         }
 
-        $total = 0;
+        // dd($panierWithData);
 
-        foreach($panierWithData as $item) {
-            // dd($item['quantite']);
-            if($item['produit'] != null) {
-                $totalitem = $item['produit']->getPrix() * $item['quantite'];
-                $total += $totalitem;
-            }   
+        $total = 0;
+        if(count($panierWithData) > 1) {
+            foreach($panierWithData as $item) {
+                // dd($item['quantite']);
+                if($item['produit'] != null) {
+                    $totalitem = $item['produit']->getPrix() * $item['quantite'];
+                    $total += $totalitem;
+                }   
+            }
         }
+        
         if($session->get("connexionEtat") == "connect") {
             $connexionEtat = "connect";
         } else {
             $connexionEtat = "";
         }
         
-        // dd($panierWithData);
         return $this->render('panier/index.html.twig', [
             'items' => $panierWithData,
             'total' => $total,
@@ -93,6 +97,6 @@ class PanierController extends AbstractController
             $entityManager->flush();
         }
         // $session->set('panier', []);
-        return $this->redirectToRoute("commande");
+        return $this->redirectToRoute("commande_encours");
     }
 }

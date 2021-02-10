@@ -33,7 +33,7 @@ class Commande
     private $adresse;
 
     /**
-     * @ORM\ManyToOne(targetEntity=admin::class, inversedBy="produit")
+     * @ORM\ManyToOne(targetEntity=Admin::class, inversedBy="commandes", cascade={"persist"})
      */
     private $user;
 
@@ -85,12 +85,12 @@ class Commande
 
     public function getUser(): ?admin
     {
-        return $this->user_id;
+        return $this->user;
     }
 
-    public function setUser(?admin $user_id): self
+    public function setUser(?admin $user): self
     {
-        $this->user_id = $user_id;
+        $this->user = $user;
 
         return $this;
     }

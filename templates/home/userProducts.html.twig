@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class='main'>
+<div class='filter'>
+<h1> Categories<h1>
+<ul class='barmenu'>
+{% for categorie in categories %}
+<li><a href="{{ path('productsCategory', {categorie: categorie.id }) }}">{{categorie}}</a></li>
+{% endfor %}
+</ul>
+</div>
+ <div class='articles' style='display: flex; flex-wrap: wrap;'  >
+        {% for product in products %}
+		<div class="card" style="width: 18rem; margin-right:50px; margin-bottom:25px">
+			<img src="{{ asset('/images/' ~ product.UrlImage)}}"
+ class="card-img-top img-article"
+   style="width:288px; height:205px">
+			<div class="card-body">
+				<p>{{product.nom}}<p>
+		         <p>{{product.prix}} euros</p>
+                <p><a href="{{ path('commander', {id:product.id}) }}" class='btn'
+                 style='background-color: #130845;color:#fff '>Voir le produit<a>
+			</div>
+		</div>
+        {% endfor %}
+      </div>  
+    </div>
+    <div class='buttons'>  
+{% if previous >= 0 %}
+<a href="{{ path('products', {offset: previous }) }}" 
+ class="btn btn-sm btn-primary w-25" style='background-color: #130845;color:#fff '>Précedent</a>
+{% endif %}
+{% if next < products|length %}
+<a href="{{ path('products', {offset: next }) }}"
+ class="btn btn-sm btn-primary w-25" style='background-color: #130845;color:#fff ' >Suivant</a>
+{% endif %}
+</div>
+
+
+{% endblock %}

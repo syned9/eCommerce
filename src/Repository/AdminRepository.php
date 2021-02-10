@@ -53,15 +53,15 @@ class AdminRepository extends ServiceEntityRepository implements PasswordUpgrade
     }
     */
 
-    /*
-    public function findOneBySomeField($value): ?Admin
+    
+    public function findOneBySomeId($id): ?Admin
     {
         return $this->createQueryBuilder('a')
-            ->andWhere('a.exampleField = :val')
-            ->setParameter('val', $value)
+            ->andWhere('a.id = :val')
+            ->setParameter('val', $id)
             ->getQuery()
             ->getOneOrNullResult()
         ;
     }
-    */
+    
 }

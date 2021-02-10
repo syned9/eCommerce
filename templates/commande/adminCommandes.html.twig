@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CommandeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Mes commande ! ✅</h1>
+
+    {% for commande in commandes %}
+        <ul>
+            <li>ID : {{ commande.id }}</li>
+            <li>Date : {{ commande.date|date("Y-m-d H:i:s") }}</li>
+            <li>Prix : {{ commande.prix }}</li>
+            <li>Adresse de livraison : {{ commande.adresse }}</li>
+            <li>Produits : {{ commande.produit|length() }}</li>
+            <a href="{{ path('commande_supp', {commande: commande}) }}">Supprimer</a>
+        </ul>
+        <br>
+    {% endfor %}    
+</div>
+{% endblock %}

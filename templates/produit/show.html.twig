@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+             
+        <div class="card-body">
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <div class="card text-left my-2">
+                        <div class="card-header">
+                            <span class="font-weight-bold">{{ produit.nom }} </span>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-truncate">Prix : {{ produit.prix }} €</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-truncate">Description : {{ produit.description }}</p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-truncate">Quantité : {{ produit.quantite }} </p>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text text-truncate">Disponible : {% if produit.disponibilite %}
+                                                                               le produit est disponible
+                                                                                {% else %}
+                                                                                le produit n'est plus disponible
+                                                                                {% endif %}</p>
+                        </div>
+                        
+                        <div class="card-footer">
+                            <form action="{{ path('panier_add', {id: produit.id}) }}" method="post">
+                                <input type="number" name="quantite" max="{{ produit.quantite }}" min="1" value="1" placeholder="1">
+                                <button type="submite" class="btn btn-succes float-right">Ajouter</button>
+                            </form>
+                            <a href="{{ path('modif', {id: produit.id}) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ path('delete', {id: produit.id}) }}" class="btn btn-warning">Suprimer</a>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+
+    {% block popup %}{% endblock %}
+{% endblock %}

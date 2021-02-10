@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveaux Produit{% endblock %}
+
+{% block body %}
+    <div class="card" style='background-color:#fff !important;'>
+        <div class="card-header d-flex">
+            <h1 class="card-title font-weight-bold text-primary">
+                Nouveaux produit
+            </h1>
+            <div class ="ml-5">
+             <a href ="{{ path('homepage') }}"  class='btn btn-primary'> revenir </a>
+            </div>
+        </div>
+        <div class="card-body">
+            {{ form(form_produit) }}
+        </div>
+    </div>
+{% endblock %}
