@@ -64,5 +64,58 @@ class ProduitRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-
+   
+    public function getProduitPaginator(int $offset, string $nom = '', string $prix ='', string $categorie =''): Paginator
+    {
+        $queryBuilder = $this->createQueryBuilder('c');
+        if ($nom) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('c.nom = :nom')
+                ->setParameter('nom', $nom);
+        }
+        if ($prix) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('c.prix = :prix')
+                ->setParameter('prix', $prix);
+        }
+        if ($categorie) {
+            $queryBuilder = $queryBuilder
+                ->andWhere('c.nom = :nom')
+                ->setParameter('nom', $categorie);
+        }
+        $query = $queryBuilder
+        ->orderBy('c.nom', 'DESC')
+        ->setMaxResults(self::PAGINATOR_PER_PAGE)
+        ->setFirstResult($offset)
+        ->getQuery()
+        ;
+        return new Paginator($query);
+     }
+     public function getListNom()
+    {
+        $noms = [];
+        foreach ($this->createQueryBuilder('c')
+        ->select('c.nom')
+        ->distinct(true)
+        ->orderBy('c.nom', 'ASC')
+        ->getQuery()
+        ->getResult() as $cols) {
+            $noms[] = $cols['nom'];
+        }
+        return $noms;
+    }
+    public function getListPrix()
+    {
+        $prixs = [];
+        foreach ($this->createQueryBuilder('c')
+        ->select('c.prix')
+        ->distinct(true)
+        ->orderBy('c.prix', 'ASC')
+        ->getQuery()
+        ->getResult() as $cols) {
+            $prixs[] = $cols['prix'];
+        }
+        return $prixs;
+    }
+    
 }

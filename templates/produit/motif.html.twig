@@ -1,0 +1,17 @@
+  
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ produits }} - Modification{% endblock %}
+
+{% block body %}
+    <div class="card">
+        <div class="card-header">
+            <h1 class="card-title font-weight-bold text-primary">
+                {{ produits }}
+            </h1>
+        </div>
+        <div class="card-body">
+            {{ form(form_produit) }}
+        </div>
+    </div>
+{% endblock %}
